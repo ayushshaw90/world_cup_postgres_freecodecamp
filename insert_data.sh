@@ -8,7 +8,7 @@ else
 fi
 
 # Do not change code above this line. Use the PSQL variable above to query your database.
-echo start
+
 filename='games.csv'
 cat games.csv | while IFS="," read year round winner opponent winner_goals opponenet_goals
 do
@@ -38,7 +38,7 @@ if [[ $winner != "winner" ]]
 then
   winner_id=$($PSQL "SELECT team_id from teams WHERE name='$winner';")
   opponent_id=$($PSQL "SELECT team_id from teams WHERE name='$opponent';")
-  $($PSQL "INSERT INTO games(year, round, winner_id, opponent_id, winner_goals, opponent_goals) VALUES($year, '$round', $winner_id, $opponent_id, $winner_goals, $opponent_goals);")
+  echo $($PSQL "INSERT INTO games(year, round, winner_id, opponent_id, winner_goals, opponent_goals) VALUES($year, '$round', $winner_id, $opponent_id, $winner_goals, $opponent_goals);")
   # echo $PSQL "INSERT INTO games(year, round, winner_id, opponent_id, winner_goals, opponent_goals) VALUES($year, '$round', $winner_id, $opponent_id, $winner_goals, $opponent_goals);"
   
 fi
