@@ -50,7 +50,7 @@ SET default_table_access_method = heap;
 CREATE TABLE public.games (
     game_id integer NOT NULL,
     year integer NOT NULL,
-    round character varying(255) NOT NULL,
+    round character varying(100) NOT NULL,
     winner_id integer NOT NULL,
     opponent_id integer NOT NULL,
     winner_goals integer NOT NULL,
@@ -88,17 +88,17 @@ ALTER SEQUENCE public.games_game_id_seq OWNED BY public.games.game_id;
 
 CREATE TABLE public.teams (
     team_id integer NOT NULL,
-    name character varying(255) NOT NULL
+    name character varying(100) NOT NULL
 );
 
 
 ALTER TABLE public.teams OWNER TO freecodecamp;
 
 --
--- Name: teams_team_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
+-- Name: teams_teams_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
 --
 
-CREATE SEQUENCE public.teams_team_id_seq
+CREATE SEQUENCE public.teams_teams_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -107,13 +107,13 @@ CREATE SEQUENCE public.teams_team_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.teams_team_id_seq OWNER TO freecodecamp;
+ALTER TABLE public.teams_teams_id_seq OWNER TO freecodecamp;
 
 --
--- Name: teams_team_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
+-- Name: teams_teams_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
 --
 
-ALTER SEQUENCE public.teams_team_id_seq OWNED BY public.teams.team_id;
+ALTER SEQUENCE public.teams_teams_id_seq OWNED BY public.teams.team_id;
 
 
 --
@@ -127,7 +127,7 @@ ALTER TABLE ONLY public.games ALTER COLUMN game_id SET DEFAULT nextval('public.g
 -- Name: teams team_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
 --
 
-ALTER TABLE ONLY public.teams ALTER COLUMN team_id SET DEFAULT nextval('public.teams_team_id_seq'::regclass);
+ALTER TABLE ONLY public.teams ALTER COLUMN team_id SET DEFAULT nextval('public.teams_teams_id_seq'::regclass);
 
 
 --
@@ -146,14 +146,14 @@ ALTER TABLE ONLY public.teams ALTER COLUMN team_id SET DEFAULT nextval('public.t
 -- Name: games_game_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.games_game_id_seq', 1, false);
+SELECT pg_catalog.setval('public.games_game_id_seq', 224, true);
 
 
 --
--- Name: teams_team_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
+-- Name: teams_teams_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.teams_team_id_seq', 1, false);
+SELECT pg_catalog.setval('public.teams_teams_id_seq', 466, true);
 
 
 --
@@ -199,3 +199,4 @@ ALTER TABLE ONLY public.games
 --
 -- PostgreSQL database dump complete
 --
+
